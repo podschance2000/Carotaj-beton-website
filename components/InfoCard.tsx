@@ -12,27 +12,27 @@ interface InfoCardProps {
 const InfoCard: React.FC<InfoCardProps> = ({ icon: Icon, title, content, href, highlight }) => {
   const CardContent = () => (
     <div className={`
-      relative p-5 rounded-3xl backdrop-blur-md border transition-all duration-300 flex flex-col justify-between h-32
+      relative p-6 rounded-3xl border transition-all duration-500 ease-out flex flex-col gap-3 h-full
       ${highlight 
-        ? 'bg-industrial-500/90 border-industrial-400/50 text-white hover:bg-industrial-500' 
-        : 'bg-white/10 border-white/10 text-white hover:bg-white/20'
+        ? 'bg-industrial-500/80 backdrop-blur-2xl border-industrial-400/50 text-white hover:bg-industrial-500/90 hover:shadow-xl hover:shadow-industrial-500/20' 
+        : 'bg-white/5 backdrop-blur-lg border-white/10 text-white hover:bg-white/10 hover:border-white/20'
       }
-      hover:scale-[1.02] active:scale-[0.98] cursor-pointer group
+      hover:scale-[1.01] active:scale-[0.99] cursor-pointer group
     `}>
       <div className="flex justify-between items-start">
-        <div className={`p-2 rounded-2xl ${highlight ? 'bg-white/20' : 'bg-white/10'}`}>
+        <div className={`p-2.5 rounded-2xl transition-colors duration-300 ${highlight ? 'bg-white/20 text-white' : 'bg-white/5 text-white/90 group-hover:bg-white/10'}`}>
           <Icon size={20} />
         </div>
         {href && (
-          <ArrowUpRight size={16} className="opacity-0 group-hover:opacity-100 transition-opacity" />
+          <ArrowUpRight size={16} className="opacity-0 -translate-y-1 translate-x-1 group-hover:opacity-100 group-hover:translate-y-0 group-hover:translate-x-0 transition-all duration-300" />
         )}
       </div>
       
-      <div>
-        <h4 className={`text-xs font-medium uppercase tracking-wider mb-1 ${highlight ? 'text-white/80' : 'text-white/50'}`}>
+      <div className="flex-1 flex flex-col justify-end mt-2">
+        <h4 className={`text-xs font-medium uppercase tracking-wider mb-2 ${highlight ? 'text-white/90' : 'text-white/50 group-hover:text-white/70 transition-colors'}`}>
           {title}
         </h4>
-        <p className="text-lg font-bold leading-tight tracking-tight truncate">
+        <p className="text-base font-bold leading-snug text-balance opacity-95 whitespace-normal break-words">
           {content}
         </p>
       </div>
@@ -41,7 +41,7 @@ const InfoCard: React.FC<InfoCardProps> = ({ icon: Icon, title, content, href, h
 
   if (href) {
     return (
-      <a href={href} className="block">
+      <a href={href} className="block h-full">
         <CardContent />
       </a>
     );
