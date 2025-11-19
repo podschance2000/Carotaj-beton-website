@@ -63,26 +63,29 @@ const ContactForm: React.FC = () => {
   }
 
   return (
-    <div className="h-full flex flex-col p-6 md:p-10 relative overflow-hidden">
+    <div className="h-full flex flex-col p-5 md:p-10 relative overflow-hidden">
         {/* Decorative background elements inside the form container for depth */}
         <div className="absolute top-0 right-0 w-64 h-64 bg-blue-400/5 rounded-full blur-3xl -translate-y-1/2 translate-x-1/3 pointer-events-none"></div>
         <div className="absolute bottom-0 left-0 w-64 h-64 bg-amber-400/5 rounded-full blur-3xl translate-y-1/2 -translate-x-1/3 pointer-events-none"></div>
 
-      <div className="relative z-10 mb-8">
-        <h2 className="text-3xl font-bold text-slate-900 tracking-tight mb-2">Hai să discutăm</h2>
-        <p className="text-slate-500 text-lg font-medium">
+      <div className="relative z-10 mb-6 md:mb-8">
+        <h2 className="text-2xl md:text-3xl font-bold text-slate-900 tracking-tight mb-2">Hai să discutăm</h2>
+        <p className="text-slate-500 text-base md:text-lg font-medium">
           Completează formularul pentru o ofertă gratuită.
         </p>
       </div>
 
-      <form onSubmit={handleSubmit} className="relative z-10 flex-1 flex flex-col space-y-4">
+      <form onSubmit={handleSubmit} className="relative z-10 flex-1 flex flex-col space-y-3 md:space-y-4">
         
         {/* Name Input */}
         <div className="space-y-1.5">
           <label htmlFor="name" className="text-xs font-semibold text-slate-500 uppercase tracking-wider ml-1">Nume</label>
           <div className={`
             relative group transition-all duration-300 rounded-2xl overflow-hidden
-            ${focusedField === 'name' ? 'ring-2 ring-industrial-500/20 shadow-lg shadow-industrial-500/5 bg-white' : 'bg-slate-50/80 hover:bg-white hover:shadow-md'}
+            ${focusedField === 'name' 
+              ? 'ring-2 ring-industrial-500/20 shadow-lg shadow-industrial-500/10 bg-white/80 backdrop-blur-md' 
+              : 'bg-slate-50/80 hover:bg-white hover:shadow-md'
+            }
           `}>
             <input
               type="text"
@@ -93,18 +96,21 @@ const ContactForm: React.FC = () => {
               onChange={handleChange}
               onFocus={() => setFocusedField('name')}
               onBlur={() => setFocusedField(null)}
-              className="w-full bg-transparent border-none px-4 py-3.5 text-slate-900 placeholder-slate-400 focus:ring-0 text-base font-medium outline-none"
+              className="w-full bg-transparent border-none px-4 py-3 md:py-3.5 text-slate-900 placeholder-slate-400 focus:ring-0 text-base font-medium outline-none"
               placeholder="ex. Andrei Popescu"
             />
           </div>
         </div>
 
-        {/* Email Input - NEW */}
+        {/* Email Input */}
         <div className="space-y-1.5">
           <label htmlFor="email" className="text-xs font-semibold text-slate-500 uppercase tracking-wider ml-1">Email</label>
           <div className={`
             relative group transition-all duration-300 rounded-2xl overflow-hidden
-            ${focusedField === 'email' ? 'ring-2 ring-industrial-500/20 shadow-lg shadow-industrial-500/5 bg-white' : 'bg-slate-50/80 hover:bg-white hover:shadow-md'}
+            ${focusedField === 'email' 
+              ? 'ring-2 ring-industrial-500/20 shadow-lg shadow-industrial-500/10 bg-white/80 backdrop-blur-md' 
+              : 'bg-slate-50/80 hover:bg-white hover:shadow-md'
+            }
           `}>
             <input
               type="email"
@@ -115,19 +121,22 @@ const ContactForm: React.FC = () => {
               onChange={handleChange}
               onFocus={() => setFocusedField('email')}
               onBlur={() => setFocusedField(null)}
-              className="w-full bg-transparent border-none px-4 py-3.5 text-slate-900 placeholder-slate-400 focus:ring-0 text-base font-medium outline-none"
+              className="w-full bg-transparent border-none px-4 py-3 md:py-3.5 text-slate-900 placeholder-slate-400 focus:ring-0 text-base font-medium outline-none"
               placeholder="ex. contact@email.com"
             />
           </div>
         </div>
 
         {/* Phone & Service Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 md:gap-4">
             <div className="space-y-1.5">
                 <label htmlFor="phone" className="text-xs font-semibold text-slate-500 uppercase tracking-wider ml-1">Telefon</label>
                 <div className={`
                     relative group transition-all duration-300 rounded-2xl overflow-hidden
-                    ${focusedField === 'phone' ? 'ring-2 ring-industrial-500/20 shadow-lg shadow-industrial-500/5 bg-white' : 'bg-slate-50/80 hover:bg-white hover:shadow-md'}
+                    ${focusedField === 'phone' 
+                      ? 'ring-2 ring-industrial-500/20 shadow-lg shadow-industrial-500/10 bg-white/80 backdrop-blur-md' 
+                      : 'bg-slate-50/80 hover:bg-white hover:shadow-md'
+                    }
                 `}>
                     <input
                     type="tel"
@@ -138,7 +147,7 @@ const ContactForm: React.FC = () => {
                     onChange={handleChange}
                     onFocus={() => setFocusedField('phone')}
                     onBlur={() => setFocusedField(null)}
-                    className="w-full bg-transparent border-none px-4 py-3.5 text-slate-900 placeholder-slate-400 focus:ring-0 text-base font-medium outline-none"
+                    className="w-full bg-transparent border-none px-4 py-3 md:py-3.5 text-slate-900 placeholder-slate-400 focus:ring-0 text-base font-medium outline-none"
                     placeholder="07xx xxx xxx"
                     />
                 </div>
@@ -148,7 +157,10 @@ const ContactForm: React.FC = () => {
                 <label htmlFor="service" className="text-xs font-semibold text-slate-500 uppercase tracking-wider ml-1">Serviciu</label>
                 <div className={`
                     relative group transition-all duration-300 rounded-2xl overflow-hidden
-                    ${focusedField === 'service' ? 'ring-2 ring-industrial-500/20 shadow-lg shadow-industrial-500/5 bg-white' : 'bg-slate-50/80 hover:bg-white hover:shadow-md'}
+                    ${focusedField === 'service' 
+                      ? 'ring-2 ring-industrial-500/20 shadow-lg shadow-industrial-500/10 bg-white/80 backdrop-blur-md' 
+                      : 'bg-slate-50/80 hover:bg-white hover:shadow-md'
+                    }
                 `}>
                     <select
                         name="service"
@@ -157,7 +169,7 @@ const ContactForm: React.FC = () => {
                         onChange={handleChange}
                         onFocus={() => setFocusedField('service')}
                         onBlur={() => setFocusedField(null)}
-                        className="w-full bg-transparent border-none px-4 py-3.5 text-slate-900 focus:ring-0 text-base font-medium outline-none appearance-none cursor-pointer"
+                        className="w-full bg-transparent border-none px-4 py-3 md:py-3.5 text-slate-900 focus:ring-0 text-base font-medium outline-none appearance-none cursor-pointer"
                     >
                         {services.map((s) => (
                         <option key={s.id} value={s.id}>{s.label}</option>
@@ -173,7 +185,10 @@ const ContactForm: React.FC = () => {
           <label htmlFor="message" className="text-xs font-semibold text-slate-500 uppercase tracking-wider ml-1">Detalii Proiect</label>
           <div className={`
             flex-1 relative group transition-all duration-300 rounded-2xl overflow-hidden
-            ${focusedField === 'message' ? 'ring-2 ring-industrial-500/20 shadow-lg shadow-industrial-500/5 bg-white' : 'bg-slate-50/80 hover:bg-white hover:shadow-md'}
+            ${focusedField === 'message' 
+              ? 'ring-2 ring-industrial-500/20 shadow-lg shadow-industrial-500/10 bg-white/80 backdrop-blur-md' 
+              : 'bg-slate-50/80 hover:bg-white hover:shadow-md'
+            }
           `}>
             <textarea
               name="message"
@@ -183,7 +198,7 @@ const ContactForm: React.FC = () => {
               onChange={handleChange}
               onFocus={() => setFocusedField('message')}
               onBlur={() => setFocusedField(null)}
-              className="w-full h-full bg-transparent border-none px-4 py-3.5 text-slate-900 placeholder-slate-400 focus:ring-0 text-base font-medium outline-none resize-none min-h-[100px]"
+              className="w-full h-full bg-transparent border-none px-4 py-3 md:py-3.5 text-slate-900 placeholder-slate-400 focus:ring-0 text-base font-medium outline-none resize-none min-h-[100px]"
               placeholder="Descrie pe scurt lucrarea..."
             />
           </div>
@@ -194,7 +209,7 @@ const ContactForm: React.FC = () => {
           type="submit"
           disabled={status === ContactStatus.SUBMITTING}
           className={`
-            relative w-full py-4 px-6 rounded-2xl font-bold text-lg tracking-wide transition-all duration-300 transform
+            relative w-full py-3.5 md:py-4 px-6 rounded-2xl font-bold text-lg tracking-wide transition-all duration-300 transform
             flex items-center justify-center space-x-2 overflow-hidden
             ${status === ContactStatus.SUBMITTING 
                 ? 'bg-slate-100 text-slate-400 cursor-not-allowed' 
